@@ -1,0 +1,286 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "sass:meta";
+
+// @import "../base/_typography.scss";
+// @import "../base/_colours.scss";
+
+/// Slightly lighten a color
+/// @access public
+/// @group colours
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of $color in returned color
+/// @return {Color} - color
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @group colours
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of $color in returned color
+/// @return {Color} - color
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+/// Insert string either to the start or end of string
+/// @access public
+/// @group general
+/// @param {String} $str - string to update
+/// @param {String} $addition - additional string to insert
+/// @param {String} $pos - position to insert an additon, it can be either start or end
+/// @return {String} - updated string
+@function str-insert($str, $addition, $pos) {
+  $index: if($pos == "start", -100, 100);
+  @return string.insert($str, $addition, $index);
+}
+
+/**
+* typography
+*/
+
+// /// Output a @font-face declaration
+// /// @access public
+// /// @group typography
+// /// @param {String} $key - human-readable key in $font-weights
+// /// @require {Map} $font-weights - base url of webfonts, can be an absolute HTPP or relative
+// /// @return {Number} - CSS font-weight
+// @function font-weight($key) {
+//   @return map.get($font-weights, $key);
+// }
+
+// /// Output a information which is represented by a Map about primary or secondary font
+// /// @access public
+// /// @group typography
+// /// @param {String} $type - primary or secondary nor another type of font
+// /// @param {Map} $font-register - Map of font that are used in app and having the structure like  theme-font-register
+// /// @require {Map} $theme-font-register
+// /// @return {Map} - font-style
+// @function get-font($type, $font-register: $theme-font-register) {
+//   @return map.get($font-register, $type);
+// }
+
+// /// Output list of fonts
+// /// @access public
+// /// @group typography
+// /// @param {String} $type - primary or secondary nor another type of font
+// /// @param {Map} $font-register - Map of font that are used in app and having the structure like  theme-font-register
+// /// @require {Map} $theme-font-register
+// /// @require {Function} get-font
+// /// @return {List} - font stack
+// @function get-theme-font-family($type, $font-register: $theme-font-register) {
+//   @return map.get(get-font($type, $font-register), "font-family");
+// }
+
+// /// Output  value of typography scale  about certain font
+// /// @access public
+// /// @group typography
+// /// @param {String} $type - primary or secondary nor another type of font
+// /// @param {String} $prop - key of typography scale such as small, base, medium etc...
+// /// @param {Map} $font-register - Map of font that are used in app and having the structure like  theme-font-register
+// /// @require {Map} $theme-font-register
+// /// @require {Function} get-font
+// /// @return {Number}
+
+// /// Output  value of typography scale  about certain font
+// /// @access public
+// /// @group typography
+// /// @param {String} $type - primary or secondary nor another type of font
+// /// @param {String} $prop - key of typography scale such as small, base, medium etc...
+// /// @param {Map} $font-register - Map of font that are used in app and having the structure like  theme-font-register
+// /// @require {Map} $theme-font-register
+// /// @require {Function} get-font
+// /// @return {Number} - value of font-scale
+// @function get-theme-font-scale(
+//   $type,
+//   $prop,
+//   $font-register: $theme-font-register
+// ) {
+//   @return map.get(
+//     map.get(get-font($type, $font-register), "typography-scale"),
+//     $prop
+//   );
+// }
+
+// /// Convert string to number
+// /// @access public
+// /// @group string
+// /// @param {String} $value - string value to parse to number
+// /// @return {Number} - color-palette for the base color
+// @function to-number($value) {
+//   @if type-of($value) == "number" {
+//     @return $value;
+//   } @else if type-of($value) != "string" {
+//     @error "Value for `to-number` should be a number or a string.";
+//   }
+
+//   $result: 0;
+//   $digits: 0;
+//   $minus: str-slice($value, 1, 1) == "-";
+//   $numbers: (
+//     "0": 0,
+//     "1": 1,
+//     "2": 2,
+//     "3": 3,
+//     "4": 4,
+//     "5": 5,
+//     "6": 6,
+//     "7": 7,
+//     "8": 8,
+//     "9": 9,
+//   );
+
+//   @for $i from if($minus, 2, 1) through str-length($value) {
+//     $character: str-slice($value, $i, $i);
+
+//     @if (index(map-keys($numbers), $character) or $character == ".") {
+//       @if $character == "." {
+//         $digits: 1;
+//       } @else if $digits == 0 {
+//         $result: $result * 10 + map-get($numbers, $character);
+//       } @else {
+//         $digits: $digits * 10;
+//         $result: $result + map-get($numbers, $character) / $digits;
+//       }
+//     }
+//   }
+
+//   @return if($minus, -$result, $result);
+// }
+
+// /// Generate tints of color
+// /// @access public
+// /// @group colors
+// /// @param {Color} $color-base - specify the color that you want to start generate tints
+// /// @param {Map} $tints - color tints
+// /// @require {Map} $color-tints - human-readable map of color tints
+// /// @require {Function} - to-number: String -> Number
+// /// @return {Map} - tints of the base color
+// @function generate-color-tints($color-base, $tints: $color-tints) {
+//   $color-palette: (); //empty map
+//   $generator-start-shade: 500;
+//   $tints-length: list.length(map.keys($tints));
+//   $tints-index: $tints-length;
+//   $tints-shades-count: 5;
+//   $reset-tints-index: false;
+
+//   @each $tint, $name-color in $tints {
+//     $start-to-shade: to-number($tint) >= $generator-start-shade;
+//     $percentage-step: if(not $start-to-shade, 5%, 10%);
+
+//     @if not $start-to-shade {
+//       $tints-index: $tints-index - 1;
+//       $reset-tints-index: true;
+//     } @else if $reset-tints-index {
+//       $tints-index: 0;
+//       $reset-tints-index: false;
+//     } @else {
+//       $tints-index: $tints-index + 1;
+//     }
+
+//     $mod: $tints-index % $tints-shades-count;
+//     //9 % 5 === (4 + 1) * $percentage-step = 50% <--- final percentage
+//     $percentage: (($mod + 1) * $percentage-step);
+
+//     $color-tint: if(
+//       not $start-to-shade,
+//       lighten($color-base, $percentage),
+//       darken($color-base, $percentage)
+//     );
+
+//     $color-palette: map.merge(
+//       $color-palette,
+//       (
+//         $name-color: $color-tint,
+//       )
+//     );
+//   }
+//   @return $color-palette;
+// }
+
+// /// Generate color palette
+// /// @access public
+// /// @group colors
+// /// @param {Map} $palette-pattern - schema/pattern which generator internally uses to create color-palette,
+// /// look at the format
+// /// ([font-flag: string]: [color-info: Map])
+// /// font-flag - determines the name of the font in generated map:
+// /// color-info - this map contains two keys: [color: string] - to generate tints,
+// /// [tints: boolean] - whether generate tints for the given color
+// /// @require {Function} - generate-color-tints
+// /// @return {Map} - color-palette
+// @function generate-color-palette($palette-pattern) {
+//   $color-palette: ();
+
+//   @each $color-flag, $color-info in $palette-pattern {
+//     $generate-tints: map.get($color-info, "tints");
+//     $color-base: map.get($color-info, "color");
+
+//     $map: if(
+//       not $generate-tints,
+//       (
+//         "base": $color-base,
+//       ),
+//       generate-color-tints($color-base)
+//     );
+
+//     $color-palette: map.merge(
+//       $color-palette,
+//       (
+//         $color-flag: $map,
+//       )
+//     );
+//   }
+//   @return $color-palette;
+// }
+
+/// Remove the unit of a length
+/// @access public
+/// @group general
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+/// Update font-stack
+/// @access public
+/// @group general
+/// @param {String} $font - font to be inserted into default font stack
+/// @param {List} $font-stack - default font-stack to be updated, usually sans or sans-serif
+/// @return {List} - font-stack
+@function update-font-stack($font, $font-stack) {
+  @return list.append($font-stack, $font, $separator: comma);
+}
+
+/// Convert value to em.
+@function em($size, $base-font-size: 12px) {
+  @return strip-unit($size) / strip-unit($base-font-size) * 1em;
+}
+
+@function createPair($fst, $snd) {
+  @return $fst, $snd;
+}
+
+@function create-map($pairs, $mapFun: null) {
+  $map: ();
+
+  @each $pair in $pairs {
+    $mappedPair: if(not $mapFun, $pair, meta.call($mapFun, $pair));
+    $key: list.nth($mappedPair, 1);
+    $value: list.nth($mappedPair, 2);
+    $map: map.merge(
+      $map,
+      (
+        $key: $value,
+      )
+    );
+  }
+  @return $map;
+}

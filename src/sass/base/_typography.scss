@@ -1,0 +1,561 @@
+@use "sass:list";
+@use "sass:map";
+@import "~modularscale-sass/stylesheets/modularscale";
+@import "../theme/_theme-default.scss";
+
+// @import "../utils/_variables.scss";
+// @import "../utils/_functions.scss";
+
+//  TYPOGRAPHY + SPACING
+
+//  Spacing
+//
+//  Control the default spacing of most components
+
+//  Variables
+
+/// Basic spacer value
+/// @group spacing
+/// @type Number
+$spacer-base: 1rem;
+
+/// Map of typical spacing values
+/// @group spacing
+/// @type Map
+$spacers: (
+  0: 0,
+  1: $spacer-base * 0.25,
+  2: $spacer-base * 0.5,
+  4: $spacer-base,
+  5: $spacer-base * 1.5,
+  6: $spacer-base * 3,
+);
+
+//  Typography
+//
+//  Control the default typography styling of most components
+
+//  Variables
+
+//  Modular scale
+//
+//  Modular scale is used to configure font-sizes in headings, texts, etc...
+
+/// Modular scale configuration
+/// Modular scale is used to configure font-sizes in headings, texts, etc...
+/// @group typography
+/// @type Map
+$modularscale: (
+  base: $theme-default-font-primary-size-base,
+  ratio: $theme-default-font-primary-ratio,
+  secondary: (
+    base: $theme-default-font-secondary-base,
+    ratio: $theme-default-font-secondary-ratio,
+  ),
+);
+
+//  General variables : font, font-size, line-height
+//
+//
+
+/// Primary font
+/// Primary font in this case is the most used font or the body font
+/// @group typography
+/// @type List
+$font-primary: $theme-default-font-primary;
+
+/// primary font sizes
+/// @group typography
+/// @type Number
+$font-primary-sm: ms(-1);
+$font-primary-bs: ms(0);
+$font-primary-md: ms(1);
+$font-primary-lg: ms(2);
+$font-primary-xl: ms(3);
+$font-primary-xxl: ms(4);
+
+/// Secondary font
+/// The second font can be appliend, for example, to a heading element.
+/// This approach is arbitrary, of course.
+/// @group typography
+/// @type List
+$font-secondary: $theme-default-font-secondary;
+
+/// secondary font sizes
+/// @group typography
+/// @type Number
+$font-secondary-sm: ms(-1, $thread: secondary);
+$font-secondary-bs: ms(0, $thread: secondary);
+$font-secondary-md: ms(1, $thread: secondary);
+$font-secondary-lg: ms(2, $thread: secondary);
+$font-secondary-xl: ms(3, $thread: secondary);
+$font-secondary-xxl: ms(4, $thread: secondary);
+
+/// Basic line height for setting vertical rhythm
+/// Default: $line-height-bs(1.5) * root-font-size(112.5%) = 27px vertical rhythm
+/// @group typography
+/// @type Number
+$line-height-bs: $theme-default-line-height-bs;
+
+/// small line height
+/// @group typography
+/// @type Number
+$line-height-sm: $theme-default-line-height-sm;
+
+/// medium line height
+/// @group typography
+/// @type Number
+$line-height-md: $theme-default-line-height-md;
+
+//  Basic elements
+//
+//  html, body, p, link, list etc..
+
+//  HTML
+//
+//  Settings for the <html> element.
+
+/// html element aka root
+/// $root-font-size affects the font-size of document
+/// @group elements
+$root-font-size: 112.5%;
+
+//  Body
+//
+//  Settings for the <body> element.
+
+/// body elem
+/// @group elements
+$body-font-size: $font-primary-bs;
+$body-font-family: $font-primary;
+
+//  Paragraph
+//
+//  Settings for the <p> element.
+
+/// paragraph elem
+/// @group elements
+$paragraph-font-size: $font-primary-bs;
+$paragraph-font-family: $font-primary;
+$paragraph-line-height: inherit;
+
+$paragraph-padding-top: 0;
+$paragraph-padding-bottom: 0;
+
+$paragraph-margin-top: 0;
+$paragraph-margin-bottom: $spacer-base;
+
+/// paragraph-spacings with line-height, padding-top, padding-bottom, margin-top,bottom
+/// used to reset default typography styles
+/// Headings parameters [ h1: line-height,paddding-top, padding-bottom, margin-top, margin-bottom ]
+/// @group elements
+/// @type Map
+$paragraph-spacings: (
+  p: (
+    $paragraph-line-height,
+    $paragraph-padding-top,
+    $paragraph-padding-bottom,
+    $paragraph-margin-top,
+    $paragraph-margin-bottom,
+  ),
+);
+
+//  Unordered list
+//
+//  Settings for the <ul> element.
+
+/// unordered elem
+/// @group elements
+$paragraph-line-height: inherit;
+
+$paragraph-padding-top: 0;
+$paragraph-padding-bottom: 0;
+
+$paragraph-margin-top: 0;
+$paragraph-margin-bottom: $spacer-base;
+
+// $line-he
+
+//  H1
+//
+//  Settings default styles for the <h1> element.
+
+/// heading h1
+/// Main heading, for example: homepage
+/// @group elements
+$h1-font-size: $font-secondary-xl;
+$h1-line-height: $line-height-bs;
+
+$h1-padding-top: 0;
+$h1-padding-bottom: 0;
+
+$h1-margin-top: 3rem;
+$h1-margin-bottom: 1rem;
+
+//  H2
+//
+//  Settings default styles for the <h2> element.
+
+/// heading h2
+/// Chapter headings
+/// @group elements
+$h2-font-size: $font-secondary-lg;
+$h2-line-height: $line-height-bs;
+
+$h2-padding-top: 0;
+$h2-padding-bottom: 0;
+
+$h2-margin-top: 2rem;
+$h2-margin-bottom: 1rem;
+
+//  H3
+//
+//  Settings default styles for the <h3> element.
+
+/// heading h3
+/// Section headings
+/// @group elements
+$h3-font-size: $font-secondary-md;
+$h3-line-height: $line-height-md;
+
+$h3-padding-top: 0;
+$h3-padding-bottom: 0;
+
+$h3-margin-top: 1rem;
+$h3-margin-bottom: 0;
+
+//  H4
+//
+//  Settings default styles for the <h4> element.
+
+/// heading h4
+/// Sub-headings headings
+/// @group elements
+$h4-font-size: $font-secondary-md;
+$h4-line-height: $line-height-md;
+
+$h4-padding-top: 0;
+$h4-padding-bottom: 0;
+
+$h4-margin-top: 1rem;
+$h4-margin-bottom: 0;
+
+//  H5
+//
+//  Settings default styles for the <h5> element.
+
+/// heading h5
+/// @group elements
+$h5-font-size: $font-secondary-bs;
+$h5-line-height: $line-height-sm;
+
+$h5-padding-top: 0;
+$h5-padding-bottom: 0;
+
+$h5-margin-top: 1rem;
+$h5-margin-bottom: 0;
+
+//  H6
+//
+//  Settings default styles for the <h6> element.
+
+/// heading h6
+/// @group elements
+$h6-font-size: $font-secondary-bs;
+$h6-line-height: $line-height-sm;
+
+$h6-padding-top: 0;
+$h6-padding-bottom: 0;
+
+$h6-margin-top: 1rem;
+$h6-margin-bottom: 0;
+
+//  HEADINGS
+//
+//  Group of styles of single elements
+
+/// apply headings font-sizes to elements other than headings
+/// @group elements
+/// @type Map
+$headings-font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+);
+
+/// apply headings line-heights to elements other than headings
+/// @group elements
+/// @type Map
+$headings-line-heights: (
+  1: $h1-line-height,
+  2: $h2-line-height,
+  3: $h3-line-height,
+  4: $h4-line-height,
+  5: $h5-line-height,
+  6: $h6-line-height,
+);
+
+/// headings-spacings with line-height, padding-top, padding-bottom, margin-top,bottom
+/// used to reset default typography styles
+/// Headings parameters [ h1: line-height,paddding-top, padding-bottom, margin-top, margin-bottom ]
+/// @group elements
+/// @type Map
+$headings-spacings-vertical: (
+  h1: (
+    $h1-line-height,
+    $h1-padding-top,
+    $h1-padding-bottom,
+    $h1-margin-top,
+    $h1-margin-bottom,
+  ),
+  h2: (
+    $h2-line-height,
+    $h2-padding-top,
+    $h2-padding-bottom,
+    $h2-margin-top,
+    $h2-margin-bottom,
+  ),
+  h3: (
+    $h3-line-height,
+    $h3-padding-top,
+    $h3-padding-bottom,
+    $h3-margin-top,
+    $h3-margin-bottom,
+  ),
+  h4: (
+    $h4-line-height,
+    $h4-padding-top,
+    $h4-padding-bottom,
+    $h4-margin-top,
+    $h4-margin-bottom,
+  ),
+  h5: (
+    $h5-line-height,
+    $h5-padding-top,
+    $h5-padding-bottom,
+    $h5-margin-top,
+    $h5-margin-bottom,
+  ),
+  h6: (
+    $h6-line-height,
+    $h6-padding-top,
+    $h6-padding-bottom,
+    $h6-margin-top,
+    $h6-margin-bottom,
+  ),
+);
+
+//  HEADINGS
+//
+//  Common styles
+$headings-font-family: $font-secondary;
+
+//  OPTIONS
+//
+//  Quickly modify global styling by enabling or disabling optional features
+$enable-font-smoothing: false !default;
+
+//  Mixins
+//
+//  Typography
+
+/// Default spacings-typography settings, include this mixin as soon as possible in HTML
+/// Outputs line-height,padding-top,padding-bottom, margin-top, margin-bottom of headings
+/// @access public
+/// @group typography
+/// @param {Map} $spacings  - set of spacing styles of elements
+@mixin set-spacings($spacings) {
+  @each $elem, $props in $spacings {
+    #{$elem} {
+      line-height: list.nth($props, 1);
+      padding-top: list.nth($props, 2);
+      padding-bottom: list.nth($props, 3);
+      margin-top: list.nth($props, 4);
+      margin-bottom: list.nth($props, 5);
+    }
+  }
+}
+
+/// Setting line-height without unit
+/// It is recommended to use non-unit value because the line-height value stays the same
+/// regardless of the font-size of the parent element
+/// Outputs line-height with specified unit
+/// @access public
+/// @group typography
+/// @param {Number} $number - multiplication of line-height-bs
+/// @param {Unit} $unit ("") - unit of the line-height
+/// @requires {variable} $line-height-bs
+@mixin line-height($number, $unit: "") {
+  line-height: #{$number * $line-height-bs + $unit};
+}
+
+/// Margin-top with rem as default unit
+/// @access public
+/// @group typography
+/// @param {Number} $number - multiplication of line-height-bs
+/// @param {Unit} $unit ("rem")
+/// @requires {variable} $line-height-bs
+@mixin margin-top($number, $unit: "rem") {
+  margin-top: #{$number * $line-height-bs + $unit};
+}
+
+/// Margin-bottom with rem as default unit
+/// @access public
+/// @group typography
+/// @param {Number} $number - multiplication of line-height-bs
+/// @param {Unit} $unit ("rem")
+/// @requires {variable} $line-height-bs
+@mixin margin-bottom($number, $unit: "rem") {
+  margin-bottom: #{$number * $line-height-bs + $unit};
+}
+
+/// Setting vertical margin - top and bottom
+/// @access public
+/// @group typography
+/// @param {Number} $top - multiplication of line-height-bs
+/// @param {Number} $bottom - multiplication of line-height-bs
+/// @param {Unit} $unit ("rem")
+/// @requires {mixin} margin-top
+/// @requires {mixin} margin-bottom
+@mixin margin-vertical($top, $bottom, $unit: "rem") {
+  @include margin-top($top, $unit);
+  @include margin-bottom($bottom, $unit);
+}
+
+// Functions
+
+//  Spacing
+
+/// Get spacing value
+/// @access public
+/// @group typography
+/// @param {Map} $srs - map of spacings values
+/// @param {Number} $val ("4") - default value of spacer = ms(0), check spacer map
+/// @requires {Map} $spacers
+@function get-spacing-value($srs: $spacers, $val: 4) {
+  @return map.get($srs, $val);
+}
+
+/// Default typography settings, include this mixin as soon as possible in HTML
+/// @access public
+/// @group general
+/// @param {Boolean} $font-smoothing ("false") - in IOS - if you place text
+/// on dark bg then looks better with this feature
+/// @requires {Boolean} $enable-font-smoothing - option to allow smooth-rendering font
+/// @requires {Mixin} line-height
+/// @requires {Mixin} margin-bottom
+/// @requires {Mixin} margin-top
+/// @requires {Mixin} set-spacings
+/// @requires {Number} $root-font-size
+/// @requires {Map} $headings-spacings-vertical
+/// @requires {List} $body-font-family;
+/// @requires {Number} $body-font-size;
+@mixin typography-defaults($font-smoothing: $enable-font-smoothing) {
+  $rootElem: "html";
+  $bodyElem: "body";
+
+  //  Seting basic document styles
+  //
+  //  - block elements with bottom margins only
+  //  - same left margins for ul/ol, dd, blockquot
+
+  //  Make all elements inherit from `html` box-sizing
+  //  Just reset the line height and the margins of every element
+  //  They all fit the baseline grid now
+  @at-root {
+    * {
+      box-sizing: inherit;
+      @include line-height(1);
+      @include margin-bottom(1);
+      @include margin-top();
+    }
+
+    #{$rootElem} {
+      font-size: $root-font-size;
+      box-sizing: border-box;
+      @if $font-smoothing {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+
+    #{$bodyElem} {
+      font-family: $body-font-family;
+      font-size: $body-font-size;
+    }
+
+    //  Headings spacings
+    //  Override default line-heights
+    @include set-spacings($headings-spacings-vertical);
+
+    //  Block elements with margin-bottom only
+    p,
+    ul,
+    ol,
+    dl,
+    table,
+    blockquote,
+    pre,
+    figure,
+    hr {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0;
+    }
+
+    //  Nested lists
+    // stylelint-disable no-descending-specificity
+    ul ul,
+    ul ol,
+    ol ul,
+    ol ol {
+      margin-bottom: 0;
+    }
+
+    //  Same margin-left for ul/ol, dd, blockquote
+    ul,
+    ol,
+    dd {
+      padding-left: 1.75rem;
+    }
+
+    dd {
+      margin-left: 0;
+    }
+
+    //  Blockquote
+    blockquote {
+      border: 0;
+      padding-left: 1.75rem;
+      margin-left: 0;
+      font-style: italic;
+    }
+
+    //  Figure/Figcaption
+    figure {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    figure > table,
+    figure > img,
+    figure > picture {
+      margin-bottom: 0;
+    }
+
+    fieldset {
+      border: 0;
+    }
+
+    legend {
+      padding: 0 0.5rem;
+    }
+
+    hr {
+      border-style: solid;
+    }
+  }
+}

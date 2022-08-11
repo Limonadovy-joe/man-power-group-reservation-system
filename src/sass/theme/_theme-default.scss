@@ -1,0 +1,783 @@
+@import "../utils/_functions.scss";
+
+// Naming convetions
+// Each aspect of css design(spacings, fonts, colors) has its own naming convention.
+
+//  Theme naming convetions
+//
+//  Prefix: theme
+//  Type: default, dark, light, admin, user
+//  Schema: Prefix-Type
+//  Examples: $theme-default, $theme-light
+//  Description: With that schema we are able to group variable names
+//  in alphabetically order so it is much easier and faster to find them.
+
+//  Theme variables naming convetions
+//
+//  Data-type: primitive
+//  Prefix: theme-dark, theme-default etc...
+//  Type: color, font
+//  State(attribute): primary, secondary
+//  Value: Boolean, Number, String, Unit etc...
+//  Schema:
+//    Declaration: Prefix-Type-State
+//    Examples: $theme-dark-color, $theme-admin-font
+//
+//    Definition: Value,
+//    Examples: $theme-darkr-color: hsl(52 93% 67%);
+//  Description: This naming-schema is only used for primitive values.
+//
+//
+//  Data-type: reference - only Map
+//  Prefix: theme-dark, theme-de etc...
+//  Type: colors, fonts, spacings
+//  Key(State | Attribute): primary, secondary
+//  Value: primitives and reference(maps and lists)
+//  Schema:
+//    Declaration: Prefix-Type
+//    Examples: $theme-dark-colors, $theme-admin-fonts
+//
+//    Definition: (Key: Value),
+//    Examples: $theme-darkr-colors: ("primary": hsl(52 93% 67%), "neutral": #fff);
+//  Description: You should not nest to deeply, the recomended number of nesting
+//  is 4 levels.
+
+// Color system
+// Info: Every color should be in hsl format.
+
+//  Colors naming convetions
+//
+//  Prefix: theme-dark, theme-de etc...
+//  Type: white, gray etc...
+//  Tint(optional): t >= 50 && t <= 900
+//  Tint-mappings: (
+//   "50": "extra-light",
+//   "100": "lightest",
+//   "200": "lighter",
+//   "300": "light",
+//   "400": "base",
+//   "500": "dark",
+//   "600": "darker",
+//   "700": "darkest",
+//   "800": "extra-dark",
+// );
+//  Schema: Prefix-Type-Tint
+//  Examples: $theme-dark-gray-lighter: hsl(210, 16%, 93%);
+
+// Default-colors
+
+/// Default white color
+/// @type Color
+/// @group theme-default
+$theme-default-color-white: hsl(0 0% 100%) !default;
+/// Default black color
+/// @type Color
+/// @group theme-default
+$theme-default-color-black: #000 !default;
+
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-extra-light: hsl(0 0% 90%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-lightest: hsl(0 0% 80%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-lighter: hsl(0 0% 70%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-light: hsl(0 0% 60%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-base: hsl(0 0% 50%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-dark: hsl(0 0% 40%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-darker: hsl(0 0% 30%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-darkest: hsl(0 0% 20%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+$theme-default-color-gray-extra-dark: hsl(0 0% 10%) !default;
+/// Default tint of gray color
+/// @type Color
+/// @group theme-default
+
+// Grays
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-gray-list: extra-light
+    $theme-default-color-gray-extra-light,
+  lightest $theme-default-color-gray-lightest,
+  lighter $theme-default-color-gray-lighter,
+  light $theme-default-color-gray-light, base $theme-default-color-gray-base,
+  dark $theme-default-color-gray-dark, darker $theme-default-color-gray-darker,
+  darkest $theme-default-color-gray-darkest,
+  extra-dark $theme-default-color-gray-extra-dark !default;
+
+/// Grays
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-gray: create-map(
+  $theme-default-colors-gray-list
+) !default;
+
+//  Primary color
+//  call-to-action, buttons and any other important information should utilize the primary color
+
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-light: hsl(52.03 93.46% 70%) !default;
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-lighter: hsl(51.9 92.65% 73.33%) !default;
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-lightest: hsl(51.89 93.28% 76.67%) !default;
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-extra-light: hsl(52.34 92.16% 80%) !default;
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-base: hsl(52.03 92.94% 66.67%) !default;
+/// Default primary color
+/// @type Color
+/// @group theme-default
+$theme-default-color-primary-dark: hsl(51.89 93.28% 46.67%) !default;
+/// Default primary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-primary-darker: hsl(52.11 93.14% 40%) !default;
+/// Default primary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-primary-darkest: hsl(52.03 92.94% 33.33%) !default;
+/// Default primary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-primary-extra-dark: hsl(51.9 92.65% 26.67%) !default;
+
+/// Default primary colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-primary-list: extra-light
+    $theme-default-color-primary-extra-light,
+  lightest $theme-default-color-primary-lightest,
+  lighter $theme-default-color-primary-lighter,
+  light $theme-default-color-primary-light,
+  base $theme-default-color-primary-base, dark $theme-default-color-primary-dark,
+  darker $theme-default-color-primary-darker,
+  darkest $theme-default-color-primary-darkest,
+  extra-dark $theme-default-color-primary-extra-dark !default;
+
+/// Default primary colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-primary: create-map(
+  $theme-default-colors-primary-list
+) !default;
+
+//Secondary color
+//to highlight less important elements: secondary action buttons, less important text
+
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-extra-light: hsl(213.16 66.67% 77.65%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-lightest: hsl(213.16 67.06% 66.67%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-lighter: hsl(212.76 66.67% 55.29%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-light: hsl(212.58 67.11% 44.12%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-base: hsl(213 67% 33%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-dark: hsl(212.84 67.38% 27.65%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-darker: hsl(212.8 66.37% 22.16%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-darkest: hsl(213.68 67.06% 16.67%) !default;
+/// Default secondary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-secondary-extra-dark: hsl(213.16 67.86% 10.98%) !default;
+
+/// Default secondary colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-secondary-list: extra-light
+    $theme-default-color-secondary-extra-light,
+  lightest $theme-default-color-secondary-lightest,
+  lighter $theme-default-color-secondary-lighter,
+  light $theme-default-color-secondary-light,
+  base $theme-default-color-secondary-base,
+  dark $theme-default-color-secondary-dark,
+  darker $theme-default-color-secondary-darker,
+  darkest $theme-default-color-secondary-darkest,
+  extra-dark $theme-default-color-secondary-extra-dark !default;
+
+/// Default primary colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-secondary: create-map(
+  $theme-default-colors-secondary-list
+) !default;
+
+//Tertiary color
+//additonal color to neutral, background for headlines in neutral color
+
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-extra-light: hsl(139.2 34.25% 85.69%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-lightest: hsl(140.53 34.55% 78.43%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-lighter: hsl(139.2 34.25% 71.37%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-light: hsl(140 34.43% 64.12%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-base: hsl(139 34% 57%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-dark: hsl(138.8 34.16% 47.65%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-darker: hsl(139.09 34.02% 38.04%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-darkest: hsl(139.2 34.25% 28.63%) !default;
+/// Default tertiary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-tertiary-extra-dark: hsl(140 34.02% 19.02%) !default;
+
+/// Default tertiary colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-tertiary-list: extra-light
+    $theme-default-color-tertiary-extra-light,
+  lightest $theme-default-color-tertiary-lightest,
+  lighter $theme-default-color-tertiary-lighter,
+  light $theme-default-color-tertiary-light,
+  base $theme-default-color-tertiary-base,
+  dark $theme-default-color-tertiary-dark,
+  darker $theme-default-color-tertiary-darker,
+  darkest $theme-default-color-tertiary-darkest,
+  extra-dark $theme-default-color-tertiary-extra-dark !default;
+
+/// Default tertiary colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-tertiary: create-map(
+  $theme-default-colors-tertiary-list
+) !default;
+
+///Neutral color
+///used for text, borders, shadows, background and non-active elements of website
+
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-extra-light: hsl(0 0% 100%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-lightest: hsl(0 0% 98.43%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-lighter: hsl(0 0% 96.86%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-light: hsl(0 0% 93.73%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-base: hsl(0 0% 90.59%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-dark: hsl(0 0% 75.69%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-darker: hsl(0 0% 60.39%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-darkest: hsl(0 0% 45.49%) !default;
+/// Default neutral color
+/// @group theme-default
+/// @type Color
+$theme-default-color-neutral-extra-dark: hsl(0 0% 15.29%) !default;
+
+/// Default neutral colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-neutral-list: extra-light
+    $theme-default-color-neutral-extra-light,
+  lightest $theme-default-color-neutral-lightest,
+  lighter $theme-default-color-neutral-lighter,
+  light $theme-default-color-neutral-light,
+  base $theme-default-color-neutral-base, dark $theme-default-color-neutral-dark,
+  darker $theme-default-color-neutral-darker,
+  darkest $theme-default-color-neutral-darkest,
+  extra-dark $theme-default-color-neutral-extra-dark !default;
+
+/// Default neutral colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-neutral: create-map(
+  $theme-default-colors-neutral-list
+) !default;
+
+//Complementary color to neutral
+//used for text, borders, shadows, background and non-active elements of website
+
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-extra-light: hsl(177.86 50% 89.02%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-lightest: hsl(177.14 50% 83.53%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-lighter: hsl(176.79 50% 78.04%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-light: hsl(177.43 50% 72.55%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-base: hsl(177 50% 67%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-dark: hsl(176.81 50.22% 55.88%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-darker: hsl(177.37 50% 44.71%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-darkest: hsl(177.18 49.71% 33.53%) !default;
+/// Default complementary color
+/// @group theme-default
+/// @type Color
+$theme-default-color-complementary-extra-dark: hsl(
+  176.9 50.88% 22.35%
+) !default;
+
+/// Default complementary colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-complementary-list: extra-light
+    $theme-default-color-complementary-extra-light,
+  lightest $theme-default-color-complementary-lightest,
+  lighter $theme-default-color-complementary-lighter,
+  light $theme-default-color-complementary-light,
+  base $theme-default-color-complementary-base,
+  dark $theme-default-color-complementary-dark,
+  darker $theme-default-color-complementary-darker,
+  darkest $theme-default-color-complementary-darkest,
+  extra-dark $theme-default-color-complementary-extra-dark !default;
+
+/// Default complementary colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-complementary: create-map(
+  $theme-default-colors-complementary-list
+) !default;
+
+//  Additonal colors
+//  to highlight informative or errors processes, alerts, states
+//  used to communicate status or feedback to the user
+
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-extra-light: hsl(120 38.46% 84.71%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-lightest: hsl(120 38.46% 77.06%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-lighter: hsl(120 38.85% 69.22%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-light: hsl(120 38.78% 61.57%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-base: hsl(120 39% 54%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-dark: hsl(120 38.86% 44.9%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-darker: hsl(120 38.8% 35.88%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-darkest: hsl(120 38.69% 26.86%) !default;
+/// Default success color
+/// @group theme-default
+/// @type Color
+$theme-default-color-success-extra-dark: hsl(120 39.13% 18.04%) !default;
+
+/// Default success colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-success-list: extra-light
+    $theme-default-color-success-extra-light,
+  lightest $theme-default-color-success-lightest,
+  lighter $theme-default-color-success-lighter,
+  light $theme-default-color-success-light,
+  base $theme-default-color-success-base, dark $theme-default-color-success-dark,
+  darker $theme-default-color-success-darker,
+  darkest $theme-default-color-success-darkest,
+  extra-dark $theme-default-color-success-extra-dark !default;
+
+/// Default success colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-success: create-map(
+  $theme-default-colors-success-list
+) !default;
+
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-extra-light: hsl(2.61 63.89% 85.88%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-lightest: hsl(1.74 64.49% 79.02%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-lighter: hsl(1.98 63.64% 71.96%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-light: hsl(2.11 63.33% 64.71%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-base: hsl(2 64% 58%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-dark: hsl(1.92 63.41% 48.24%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-darker: hsl(1.92 63.45% 38.63%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-darkest: hsl(1.91 63.51% 29.02%) !default;
+/// Default danger color
+/// @group theme-default
+/// @type Color
+$theme-default-color-danger-extra-dark: hsl(1.94 63.27% 19.22%) !default;
+
+/// Default danger colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-danger-list: extra-light
+    $theme-default-color-danger-extra-light,
+  lightest $theme-default-color-danger-lightest,
+  lighter $theme-default-color-danger-lighter,
+  light $theme-default-color-danger-light, base $theme-default-color-danger-base,
+  dark $theme-default-color-danger-dark,
+  darker $theme-default-color-danger-darker,
+  darkest $theme-default-color-danger-darkest,
+  extra-dark $theme-default-color-danger-extra-dark !default;
+
+/// Default danger colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-danger: create-map(
+  $theme-default-colors-danger-list
+) !default;
+
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-extra-light: hsl(34.44 84.38% 87.45%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-lightest: hsl(35.56 83.51% 80.98%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-lighter: hsl(35.56 83.08% 74.51%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-light: hsl(35.11 83.85% 68.43%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-base: hsl(35 84% 62%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-dark: hsl(34.95 83.74% 51.76%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-darker: hsl(35.45 83.81% 41.18%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-darkest: hsl(35 83.54% 30.98%) !default;
+/// Default warning color
+/// @group theme-default
+/// @type Color
+$theme-default-color-warning-extra-dark: hsl(34.77 83.02% 20.78%) !default;
+
+/// Default warning colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-warning-list: extra-light
+    $theme-default-color-warning-extra-light,
+  lightest $theme-default-color-warning-lightest,
+  lighter $theme-default-color-warning-lighter,
+  light $theme-default-color-warning-light,
+  base $theme-default-color-warning-base, dark $theme-default-color-warning-dark,
+  darker $theme-default-color-warning-darker,
+  darkest $theme-default-color-warning-darkest,
+  extra-dark $theme-default-color-warning-extra-dark !default;
+
+/// Default warning colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-warning: create-map(
+  $theme-default-colors-warning-list
+) !default;
+
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-extra-light: hsl(193.64 66.67% 87.06%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-lightest: hsl(193.85 65.66% 80.59%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-lighter: hsl(193.79 65.41% 73.92%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-light: hsl(193.76 66.06% 67.65%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-base: hsl(194 66% 61%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-base: hsl(194 66% 61%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-dark: hsl(193.82 65.74% 50.78%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-darker: hsl(193.58 66.18% 40.59%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-darkest: hsl(194.12 65.38% 30.59%) !default;
+/// Default info color
+/// @group theme-default
+/// @type Color
+$theme-default-color-info-extra-dark: hsl(194.12 65.38% 20.39%) !default;
+
+/// Default info colors represented as list
+/// List of Pairs [first: tint or shadow name, second: tint or shadow value]
+/// @group theme-default
+/// @type List
+$theme-default-colors-info-list: extra-light
+    $theme-default-color-info-extra-light,
+  lightest $theme-default-color-info-lightest,
+  lighter $theme-default-color-info-lighter,
+  light $theme-default-color-info-light, base $theme-default-color-info-base,
+  dark $theme-default-color-info-dark, darker $theme-default-color-info-darker,
+  darkest $theme-default-color-info-darkest,
+  extra-dark $theme-default-color-info-extra-dark !default;
+
+/// Default info colors represented as map
+/// Map {[key: name of tint and shadow]: [value: tint and shadow]}
+/// @group theme-default
+/// @type Map
+$theme-default-colors-info: create-map(
+  $theme-default-colors-info-list
+) !default;
+
+//  Typography system
+//
+//
+
+/// Primary font
+/// Base value for calculation of modular sacle
+/// @group theme-default
+/// @type Number
+$theme-default-font-primary-size-base: 1rem !default;
+/// Primary font
+/// Ratio value for calculation of modular sacle
+/// @group theme-default
+/// @type Number
+$theme-default-font-primary-ratio: 1.5 !default;
+
+/// Secondary font
+/// Base value for calculation of modular sacle
+/// @group theme-default
+/// @type Number
+$theme-default-font-secondary-base: 1rem !default;
+/// Secondary font
+/// Base value for calculation of modular sacle
+/// @group theme-default
+/// @type Number
+$theme-default-font-secondary-ratio: 1.45 !default;
+
+/// Default primary font - serif
+/// @group theme-default
+/// @type String
+$theme-default-font-primary-name: "Mundo-DemiBold" !default;
+
+/// Default secondary font - sans-serif
+/// @group theme-default
+/// @type String
+$theme-default-font-secondary-name: "Century-Gothic-Bold" !default;
+
+/// Serif font stack
+/// @group theme-default
+/// @type List
+$theme-default-font-family-serif: "Georgia", "Times New Roman", "serif" !default;
+
+/// Sans-serif font stack
+/// @group theme-default
+/// @type List
+$theme-default-font-family-sans-serif: "Helvetica Neue", "Helvetica",
+  "sans-serif" !default;
+
+/// Monospace font stack
+/// @group theme-default
+/// @type List
+$theme-default-font-family-monospace: "Courier New", "monospace" !default;
+
+/// Default primary font - serif
+/// @group theme-default
+/// @type List
+$theme-default-font-primary: update-font-stack(
+  $theme-default-font-primary-name,
+  $theme-default-font-family-serif
+) !default;
+
+/// Default secondary font - sans-serif
+/// @group theme-default
+/// @type List
+$theme-default-font-secondary: update-font-stack(
+  $theme-default-font-secondary-name,
+  $theme-default-font-family-sans-serif
+) !default;
+
+/// Default small line height
+/// @group theme-default
+/// @type Number
+$theme-default-line-height-sm: 1.25 !default;
+
+/// Default medium line height
+/// @group theme-default
+/// @type Number
+$theme-default-line-height-md: 1.45 !default;
+
+/// Default large line height
+/// @group theme-default
+/// @type Number
+$theme-default-line-height-lg: 2 !default;
+
+/// Default base line height
+/// @group theme-default
+/// @type Number
+$theme-default-line-height-bs: 1.5 !default;

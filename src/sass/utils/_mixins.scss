@@ -1,0 +1,78 @@
+@import "./_variables.scss";
+@import "./_functions.scss";
+@use "sass:map";
+@use "sass:string";
+
+/**
+* webfonts
+*/
+
+/// Output a @font-face declaration
+/// @access public
+/// @group webfonts
+/// @param {String} $font-family - name of font-family
+/// @param {String} $path - address of the source font, can be an absolute HTPP or relative
+/// @param {Number} $weight
+/// @param {String} $style
+/// @param {List} $extensions - single extensions of font files to include in src
+/// @require {String} $webfonts-base-url - base url of webfonts, can be an absolute HTPP or relative
+@mixin font-face($family, $path, $weight: 400, $style: normal, $exts) {
+  $src: $webfonts-base-url;
+
+  //types of font files that have different names of format with compared to its extensions
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+    eotfix: "embedded-opentype",
+  );
+
+  @each $ext in $exts {
+    $ext-types-with-postfix: (
+      eotfix: (
+        //IE6-IE8
+        format:
+          "?#iefix",
+        addition: "eot",
+        pos: "start",
+      ),
+      svg: (
+        //Legacy iOS
+        format:
+          "svg#",
+        addition: #{$family},
+        pos: "end",
+      ),
+    );
+
+    $ext-type: if(
+      map.has-key($ext-types-with-postfix, $ext),
+      map.get($ext-types-with-postfix, $ext, "format"),
+      quote($ext)
+    );
+    $format: if(
+      map.has-key($formats, $ext),
+      map.get($formats, $ext),
+      quote($ext)
+    );
+
+    //additional insert values to ext-type
+    @if map.has-key($ext-types-with-postfix, $ext) {
+      $addition: map.get($ext-types-with-postfix, $ext, "addition");
+      $pos: map.get($ext-types-with-postfix, $ext, "pos");
+      $ext-type: str-insert($ext-type, $addition, $pos);
+    }
+
+    $font-url: url($path + "." + $ext-type);
+    $font-format: format($format);
+    $font-src: $font-url $font-format;
+
+    $src: append($src, $font-src, comma);
+  }
+
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}

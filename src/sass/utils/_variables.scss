@@ -1,0 +1,70 @@
+@import "../base/_typography.scss";
+@use "sass:list";
+
+// Typography
+//
+
+// Typography
+//
+
+// @mixin typography-colours-defaults($font-smoothing: false) {
+//   $rootElem: "html";
+//   $bodyElem: "body";
+
+//   @at-root {
+//     * {
+//       box-sizing: inherit;
+//     }
+
+//     #{$rootElem} {
+//       font-size: get-typography-style-value($rootElem, "font-size");
+//       box-sizing: border-box;
+//       @if $font-smoothing {
+//         -moz-osx-font-smoothing: grayscale;
+//         -webkit-font-smoothing: antialiased;
+//       }
+//     }
+
+//     #{$bodyElem} {
+//       font-family: get-typography-style-value($bodyElem, "font-family");
+//       font-size: get-typography-style-value($bodyElem, "font-size");
+//       line-height: get-typography-style-value($bodyElem, "line-height");
+//       background-color: get-colours-style($bodyElem, "background-color");
+//       color: get-colours-style($bodyElem, "color");
+//     }
+//   }
+// }
+
+// /**
+// * Webfonts
+// */
+// $webfonts-base-url: "../assets/fonts/" !default; //this is the default value of src parameter in mixin font-face
+// $webfonts-charset: "original" !default;
+
+/// Human-readable color-tints
+/// @group colors
+$color-tints: (
+  "50": "extra-light",
+  "100": "lightest",
+  "200": "lighter",
+  "300": "light",
+  "400": "base",
+  "500": "dark",
+  "600": "darker",
+  "700": "darkest",
+  "800": "extra-dark",
+);
+
+/// Human-readable font-weights
+/// @group typography
+$font-weights: (
+  "thin": 100,
+  "light": 200,
+  "book": 300,
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+  "black": 800,
+  "ultrablack": 900,
+) !default;

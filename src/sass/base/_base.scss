@@ -1,0 +1,166 @@
+@import "./_typography.scss";
+@import "./_colours.scss";
+
+//  Options
+//
+//  Typography
+
+//  Set typography defaults
+$enable-font-smoothing: true;
+
+//  Options
+//
+//  Set colors defaults
+
+//  Seting basic document styles
+//
+//  - block elements with bottom margins only
+//  - same left margins for ul/ol, dd, blockquot
+
+//  Make all elements inherit from `html` box-sizing
+//  Just reset the line height and the margins of every element
+//  They all fit the baseline grid now
+* {
+  box-sizing: inherit;
+  @include line-height(1);
+  @include margin-bottom(1);
+  @include margin-top(0);
+}
+
+//  1. Redefine box-sizing on the root element
+//  2. Explicitly set a background color to avoid an issue in Edge in dark mode,
+//  where the browser’s chrome background is set to a dark color
+html {
+  font-size: $root-font-size;
+  box-sizing: border-box; //  1.
+  background-color: $root-background; //  2.
+  @if $enable-font-smoothing {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+body {
+  font-family: $body-font-family;
+  // background-color: $body-background;
+  // color: $body-color;
+}
+
+//  Headings
+%heading-base {
+  font-family: $headings-font-family;
+  hyphens: auto;
+  text-transform: capitalize;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @extend %heading-base;
+  // color: $headings-color;
+  // background-color: $headings-background;
+  font-weight: bolder;
+}
+
+//  Sub-headings
+h4 {
+  text-transform: uppercase;
+}
+
+h5,
+h6 {
+  // @extend %heading-base;
+  // color: $headings-color;
+  background-color: none;
+  font-weight: lighter;
+}
+
+//  Headings spacings
+//  Override default line-heights
+@include set-spacings($headings-spacings-vertical);
+
+//  Block elements with margin-bottom only
+p,
+ul,
+ol,
+dl,
+table,
+blockquote,
+pre,
+figure,
+hr {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+//  Nested lists
+// stylelint-disable no-descending-specificity
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
+}
+
+//  Same margin-left for ul/ol, dd, blockquote
+ul,
+ol,
+dd {
+  padding-left: 1.75rem;
+}
+
+dd {
+  margin-left: 0;
+}
+
+//  Blockquote
+blockquote {
+  border: 0;
+  padding-left: 1.75rem;
+  margin-left: 0;
+  font-style: italic;
+}
+
+//  Figure/Figcaption
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+figure > table,
+figure > img,
+figure > picture {
+  margin-bottom: 0;
+}
+
+fieldset {
+  border: 0;
+}
+
+legend {
+  padding: 0 0.5rem;
+}
+
+hr {
+  border-style: solid;
+}
+
+//  Inline elements
+a,
+.link-like {
+  padding: $link-padding;
+  color: $color-neutral;
+  text-decoration: $link-decoration;
+  background: $link-background;
+  border: $link-border;
+  cursor: pointer;
+  transition: 0.15s;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-primary;
+  }
+}

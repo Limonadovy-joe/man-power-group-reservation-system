@@ -1,0 +1,218 @@
+@import "../theme/_theme-default.scss";
+
+//  General variables : font, font-size, line-height
+//
+//
+
+/// Primary color
+/// @group General
+/// @type Color
+$color-primary: $theme-default-color-primary-base;
+
+/// Secondary color
+/// @group General
+/// @type Color
+$color-secondary: $theme-default-color-secondary-light;
+
+/// Tertiary color
+/// additonal color to neutral, background for headlines in neutral color
+/// @group General
+/// @type Color
+$color-tertiary: $theme-default-color-tertiary-light;
+
+/// Complementary color
+/// for text, borders, shadows, background and non-active elements of website
+/// @group General
+/// @type Color
+$color-complementary: $theme-default-color-complementary-light;
+
+/// Neutral color
+/// for text and non-active elements(shadows, borders) in UI
+/// @group General
+/// @type Color
+$color-neutral: $theme-default-color-neutral-lighter;
+
+/// Success color
+/// @group General
+/// @type Color
+$color-success: $theme-default-color-success-base;
+
+/// Warning color
+/// @group General
+/// @type Color
+$color-warning: $theme-default-color-warning-base;
+
+/// Danger color
+/// @group General
+/// @type Color
+$color-danger: $theme-default-color-danger-base;
+
+/// Info color
+/// @group General
+/// @type Color
+$color-info: $theme-default-color-info-base;
+
+/// Dark color
+/// @group General
+/// @type Color
+$color-dark: $theme-default-color-gray-base;
+
+/// Light color
+/// @group General
+/// @type Color
+$color-light: $theme-default-color-gray-extra-light;
+
+/// Text
+/// @group General
+/// @type Color
+$color-text: $color-neutral;
+
+/// Text
+/// @group General
+/// @type Color
+$color-text-muted: $theme-default-color-gray-lighter;
+
+// Basic elements
+
+/// HTMl elem aka root
+/// @group elements
+/// @type Color
+$root-background: $theme-default-color-white !default;
+
+/// BODY
+/// @group elements
+/// @type Color
+$body-background: $color-complementary;
+
+/// BODY
+/// @group elements
+/// @type Color
+$body-color: $color-neutral;
+
+/// LINK
+/// @group elements
+/// @type Color
+$link-color: $color-secondary;
+$link-decoration: underline $color-primary;
+$link-padding: 0;
+$link-background: 0;
+$link-border: 0;
+
+/// HEADINGS
+/// @group elements
+/// @type Color
+$headings-color: $color-neutral;
+$headings-background: $color-tertiary;
+
+// /// Default color settings, include this mixin as soon as possible in HTML
+// /// @access public
+// /// @group general
+// /// @param {Boolean} $font-smoothing ("false") - in IOS - if you place text on
+// /// dark bg then looks better with this feature
+// /// @requires {Map} $typography-styles - set of default typo styles for each used elem in app
+// /// @requires {Map} $colours-styles - set of default colours styles for each used elem in app
+// @mixin color-defaults() {
+//   $rootElem: "html";
+//   $bodyElem: "body";
+
+//   //  Seting basic document styles
+//   //
+//   //  - block elements with bottom margins only
+//   //  - same left margins for ul/ol, dd, blockquot
+
+//   //  Make all elements inherit from `html` box-sizing
+//   //  Just reset the line height and the margins of every element
+//   //  They all fit the baseline grid now
+//   @at-root {
+//     * {
+//       box-sizing: inherit;
+//       @include line-height(1);
+//       @include margin-bottom(1);
+//       @include margin-top();
+//     }
+
+//     #{$rootElem} {
+//       font-size: $root-font-size;
+//       box-sizing: border-box;
+//       @if $font-smoothing {
+//         -moz-osx-font-smoothing: grayscale;
+//         -webkit-font-smoothing: antialiased;
+//       }
+//     }
+
+//     #{$bodyElem} {
+//       font-family: $body-font-family;
+//       font-size: $body-font-size;
+//     }
+
+//     //  Headings spacings
+//     //  Override default line-heights
+//     @include set-spacings($headings-spacings-vertical);
+
+//     //  Block elements with margin-bottom only
+//     p,
+//     ul,
+//     ol,
+//     dl,
+//     table,
+//     blockquote,
+//     pre,
+//     figure,
+//     hr {
+//       padding-top: 0;
+//       padding-bottom: 0;
+//       margin-top: 0;
+//     }
+
+//     //  Nested lists
+//     ul ul,
+//     ul ol,
+//     ol ul,
+//     ol ol {
+//       margin-bottom: 0;
+//     }
+
+//     //  Same margin-left for ul/ol, dd, blockquote
+//     ul,
+//     ol,
+//     dd {
+//       padding-left: 1.75rem;
+//     }
+
+//     dd {
+//       margin-left: 0;
+//     }
+
+//     //  Blockquote
+//     blockquote {
+//       border: 0;
+//       padding-left: 1.75rem;
+//       margin-left: 0;
+//       font-style: italic;
+//     }
+
+//     //  Figure/Figcaption
+//     figure {
+//       margin-left: 0;
+//       margin-right: 0;
+//     }
+
+//     figure > table,
+//     figure > img,
+//     figure > picture {
+//       margin-bottom: 0;
+//     }
+
+//     fieldset {
+//       border: 0;
+//     }
+
+//     legend {
+//       padding: 0 0.5rem;
+//     }
+
+//     hr {
+//       border-style: solid;
+//     }
+//   }
+// }
